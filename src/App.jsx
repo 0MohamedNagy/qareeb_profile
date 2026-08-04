@@ -20,6 +20,8 @@ import {
   TrendingUp,
   CheckCircle,
   Mail,
+  Phone,
+  MessageCircle,
   X,
 } from 'lucide-react';
 import './index.css';
@@ -91,12 +93,16 @@ function AnimatedCounter({ target, suffix = '' }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useScrollReveal();
 
-  /* Sticky header shrink on scroll */
+  /* Sticky header + scroll-to-top visibility */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      setShowScrollTop(window.scrollY > 400);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -110,8 +116,8 @@ function App() {
 
   const navItems = [
     { href: '#home', label: 'الرئيسية' },
+    { href: '#about', label: 'من نحن' },
     { href: '#features', label: 'منظومتنا' },
-    { href: '#stats', label: 'بالأرقام' },
     { href: '#values', label: 'قيمنا' },
     { href: '#vision', label: 'رؤيتنا' },
     { href: '#contact', label: 'تواصل معنا' },
@@ -119,6 +125,15 @@ function App() {
 
   return (
     <>
+      {/* ── Scroll to Top ── */}
+      <button
+        className={`scroll-top ${showScrollTop ? 'visible' : ''}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="العودة للأعلى"
+      >
+        <ArrowLeft size={20} style={{ transform: 'rotate(90deg)' }} />
+      </button>
+
       {/* ── Mobile Menu Overlay ── */}
       <div
         className={`mobile-menu-overlay ${menuOpen ? 'active' : ''}`}
@@ -249,8 +264,62 @@ function App() {
           </div>
         </div>
       </section>
+      {/* ── About ── */}
+      <section id="about" className="about">
+        <div className="container">
+          <div className="about-grid">
+            <div className="about-image-side reveal-left">
+              <img
+                className="about-image-main"
+                src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=1400&auto=format&fit=crop"
+                alt="فريق قريب"
+                loading="lazy"
+              />
+              <div className="about-image-badge">
+                <strong>٢٠٢٣</strong>
+                <span>تأسست قريب</span>
+              </div>
+            </div>
 
-      {/* ── Features ── */}
+            <div className="about-content reveal-right">
+              <h2 className="section-title">من نحن؟</h2>
+              <ul className="about-points">
+                {[
+                  {
+                    icon: <BrainCircuit size={22} />,
+                    title: 'شركة تقنية متعددة القطاعات',
+                    desc: 'نطوّر حلولاً رقمية ذكية للزراعة، الثروة الحيوانية، اللوجستيات، والأعمال.',
+                  },
+                  {
+                    icon: <Globe size={22} />,
+                    title: 'حضور إقليمي متنامٍ',
+                    desc: 'نخدم عملاء في أكثر من ٥ دول في المنطقة العربية ونسعى للتوسع.',
+                  },
+                  {
+                    icon: <Zap size={22} />,
+                    title: 'تقنيات الجيل القادم',
+                    desc: 'نعتمد الذكاء الاصطناعي وتحليل البيانات في صميم كل منتج نقدمه.',
+                  },
+                  {
+                    icon: <Leaf size={22} />,
+                    title: 'رؤية مستدامة',
+                    desc: 'نبني بمسؤولية تجاه البيئة والمجتمع لضمان مستقبل أفضل للجميع.',
+                  },
+                ].map(({ icon, title, desc }) => (
+                  <li className="about-point" key={title}>
+                    <div className="about-point-icon">{icon}</div>
+                    <div className="about-point-text">
+                      <strong>{title}</strong>
+                      <span>{desc}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="features" className="section features">
         <div className="container">
           <h2 className="section-title reveal">منظومة متكاملة... قطاعات متعددة</h2>
@@ -291,8 +360,9 @@ function App() {
                 title: 'الزراعة الذكية',
                 desc: 'حلول متقدمة لإدارة المزارع وتحليل البيانات الزراعية ورفع الإنتاجية.',
               },
-            ].map(({ icon, title, desc }) => (
+            ].map(({ icon, title, desc }, i) => (
               <div className="feature-card reveal" key={title}>
+                <span className="feature-card-num">{String(i + 1).padStart(2, '0')}</span>
                 <div className="feature-icon">{icon}</div>
                 <h3>{title}</h3>
                 <p>{desc}</p>
@@ -380,11 +450,19 @@ function App() {
       <section id="contact" className="cta">
         <div className="container">
           <h2 className="reveal">ندعو المستثمرين والشركاء للانضمام إلى رحلتنا</h2>
-          <p className="reveal">لبناء مستقبل ذكي ومستدام يخدم الملايين</p>
-          <div className="reveal" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:info@qareeb.com" className="btn btn-white">
-              <Mail size={20} />
-              تواصل معنا الآن
+          <p className="reveal">تواصل معنا مباشرة عبر البريد أو الهاتف أو الواتساب</p>
+          <div className="reveal" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '1.5rem' }}>
+            <a href="https://wa.me/201067156319" target="_blank" rel="noopener noreferrer" className="btn btn-white">
+              <MessageCircle size={20} color="var(--color-primary)" />
+              واتساب: 01067156319
+            </a>
+            <a href="tel:01067156319" className="btn btn-white">
+              <Phone size={20} color="var(--color-primary)" />
+              اتصال: 01067156319
+            </a>
+            <a href="mailto:mn877007@gmail.com" className="btn btn-white">
+              <Mail size={20} color="var(--color-primary)" />
+              mn877007@gmail.com
             </a>
           </div>
         </div>
@@ -404,17 +482,20 @@ function App() {
               أفضل للجميع.
             </p>
 
-            <div className="social-links">
-              {['LinkedIn', 'Facebook', 'X', 'Instagram'].map((name) => (
-                <a key={name} href="#" aria-label={name}>
-                  {name}
-                </a>
-              ))}
+            <div className="social-links" style={{ gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <a href="https://wa.me/201067156319" target="_blank" rel="noopener noreferrer">
+                <MessageCircle size={18} style={{ marginLeft: '6px' }} />
+                واتساب: 01067156319
+              </a>
+              <a href="tel:01067156319">
+                <Phone size={18} style={{ marginLeft: '6px' }} />
+                هاتف: 01067156319
+              </a>
+              <a href="mailto:mn877007@gmail.com">
+                <Mail size={18} style={{ marginLeft: '6px' }} />
+                mn877007@gmail.com
+              </a>
             </div>
-
-            <a href="https://www.qareeb.com" className="footer-website" target="_blank" rel="noopener noreferrer">
-              www.qareeb.com
-            </a>
           </div>
 
           <div className="footer-bottom">
