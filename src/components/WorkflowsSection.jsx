@@ -15,9 +15,9 @@ export function WorkflowsSection() {
   return (
     <section id="workflows" className="section features">
       <div className="container">
-        <h2 className="section-title reveal">فئة واحدة، طريقتها الخاصة</h2>
+        <h2 className="section-title reveal">المنصة المحلية الموحدة — خدمات لكل احتياج</h2>
         <p className="section-subtitle reveal">
-          المنصة بتتكيف مع الخدمة، مش العكس — كل فئة ليها الـ Workflow اللي يناسبها، على حساب وثقة وتجربة واحدة
+          بجانب حلول الزراعة الذكية، قريب توفر منصة خدمات محلية متكاملة — كل فئة ليها طريقتها الخاصة بحساب وثقة واحدة.
         </p>
 
         <div className="features-grid stagger-children">

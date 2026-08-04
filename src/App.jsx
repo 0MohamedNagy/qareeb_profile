@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
-import { HowItWorksSection } from './components/HowItWorksSection';
+import { AgriTechSection } from './components/AgriTechSection';
+import { TechServicesSection } from './components/TechServicesSection';
 import { ProblemSection } from './components/ProblemSection';
 import { WorkflowsSection } from './components/WorkflowsSection';
+import { AchievementsSection } from './components/AchievementsSection';
 import { TrustSection } from './components/TrustSection';
 import { VisionSection } from './components/VisionSection';
 import { CTASection } from './components/CTASection';
@@ -80,9 +82,11 @@ export default function App() {
       {/* Main Content Sections */}
       <main>
         <HeroSection />
-        <HowItWorksSection />
+        <AgriTechSection />
+        <TechServicesSection />
         <ProblemSection />
         <WorkflowsSection />
+        <AchievementsSection />
         <TrustSection />
         <VisionSection />
         <CTASection />

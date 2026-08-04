@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Search, Calendar, UtensilsCrossed, Wrench, Store } from 'lucide-react';
+import { ArrowLeft, Search, Sprout, PawPrint, Droplets, Smartphone, ShieldCheck, CheckCircle } from 'lucide-react';
 
 export function HeroSection() {
   return (
@@ -11,75 +11,107 @@ export function HeroSection() {
 
       <div className="container hero-container">
         <div className="hero-content">
-          <span className="subtitle">منصة محلية موحدة</span>
+          <div className="hero-top-tag">
+            <span>🌱 التقنية... من أجل الزراعة والحياة</span>
+          </div>
           <h1>
-            كل احتياج محلي، <span>في مكان واحد</span>
+            حلول تقنية ذكية <span>للزراعة والثروة الحيوانية</span> والمنصات المحلية
           </h1>
           <p>
-            قريب منصة محلية موحدة بتجمع خدمات وأعمال ومنتجات ومعاملات محلية
-            متعددة في تجربة واحدة متسقة — بدل ما تدور بين تطبيقات متفرقة
-            لكل احتياج، حساب واحد وثقة واحدة تكفيك لكل حاجة في منطقتك.
+            قريب نطور أنظمة وتطبيقات متكاملة تربط الأرض والقطعان والتكنولوجيا بالذكاء الاصطناعي — لرفع الإنتاجية، خفض التكاليف، وتقديم تجربة خدمات محلية موحدة وموثوقة.
           </p>
+
+          <div className="hero-quick-features">
+            <div className="hero-qf-item">
+              <CheckCircle size={18} color="var(--color-primary)" />
+              <span>ذكاء اصطناعي وحساسات IoT</span>
+            </div>
+            <div className="hero-qf-item">
+              <CheckCircle size={18} color="var(--color-primary)" />
+              <span>إدارة المزارع والقطعان</span>
+            </div>
+            <div className="hero-qf-item">
+              <CheckCircle size={18} color="var(--color-primary)" />
+              <span>تطبيقات تعمل بدون إنترنت</span>
+            </div>
+          </div>
+
           <div className="hero-actions">
-            <a href="#contact" className="btn btn-primary">
-              انضم كشريك مبكر
+            <a href="#agri-tech" className="btn btn-primary">
+              استكشف حلول المنظومة
               <ArrowLeft size={20} />
             </a>
-            <a href="#workflows" className="btn btn-secondary">
-              استكشف الفئات
+            <a href="#contact" className="btn btn-secondary">
+              تواصل مع الشركاء
             </a>
           </div>
         </div>
 
-        {/* Hero Interactive App Mockup Card */}
+        {/* Hero Interactive App Mockup Showcase */}
         <div className="hero-showcase-card">
+          <div className="showcase-header-bar">
+            <div className="showcase-status-badge">
+              <span className="dot-live" />
+              منظومة قريب الذكية
+            </div>
+            <span className="showcase-app-ver">App v2.4</span>
+          </div>
+
           <div className="showcase-search-bar">
-            <Search size={20} className="search-icon" />
-            <span>ابحث عن أي خدمة، عيادة، مطعم، أو صيانة...</span>
+            <Search size={18} className="search-icon" />
+            <span>ابحث عن حالة المزرعة، العيادات، أو التنبيهات...</span>
           </div>
 
           <div className="showcase-grid">
             <div className="showcase-item">
-              <div className="showcase-item-icon"><Calendar size={22} color="#189851" /></div>
+              <div className="showcase-item-icon" style={{ background: 'rgba(24, 152, 81, 0.2)' }}>
+                <Sprout size={22} color="#4ade80" />
+              </div>
               <div>
-                <div className="showcase-item-title">مواعيد وعيادات</div>
-                <div className="showcase-item-sub">Workflow مخصص</div>
+                <div className="showcase-item-title">مراقبة المحاصيل</div>
+                <div className="showcase-item-sub">صحة النبات 92% ✅</div>
               </div>
             </div>
 
             <div className="showcase-item">
-              <div className="showcase-item-icon"><UtensilsCrossed size={22} color="#3b82f6" /></div>
+              <div className="showcase-item-icon" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
+                <PawPrint size={22} color="#60a5fa" />
+              </div>
               <div>
-                <div className="showcase-item-title">أوردرات ومطاعم</div>
-                <div className="showcase-item-sub">Workflow مخصص</div>
+                <div className="showcase-item-title">الثروة الحيوانية</div>
+                <div className="showcase-item-sub">78 رأس ماشية 🐄</div>
               </div>
             </div>
 
             <div className="showcase-item">
-              <div className="showcase-item-icon"><Wrench size={22} color="#f59e0b" /></div>
+              <div className="showcase-item-icon" style={{ background: 'rgba(245, 158, 11, 0.2)' }}>
+                <Droplets size={22} color="#fbbf24" />
+              </div>
               <div>
-                <div className="showcase-item-title">خدمات وصيانة</div>
-                <div className="showcase-item-sub">Workflow مخصص</div>
+                <div className="showcase-item-title">ري ذكي واستشعار</div>
+                <div className="showcase-item-sub">توفير 30% مياه 💧</div>
               </div>
             </div>
 
             <div className="showcase-item">
-              <div className="showcase-item-icon"><Store size={22} color="#8b5cf6" /></div>
+              <div className="showcase-item-icon" style={{ background: 'rgba(139, 92, 246, 0.2)' }}>
+                <Smartphone size={22} color="#c084fc" />
+              </div>
               <div>
-                <div className="showcase-item-title">بيع وشراء وسوق</div>
-                <div className="showcase-item-sub">Workflow مخصص</div>
+                <div className="showcase-item-title">منصة خدمات محلية</div>
+                <div className="showcase-item-sub">حساب واحد موحد 🛡️</div>
               </div>
             </div>
           </div>
 
           <div className="showcase-footer-pill">
-            <span>🛡️ هوية وثقة واحدة موحدة</span>
-            <span className="badge-active">مفعل</span>
+            <span>🛡️ هوية وثقة واحدة موحدة (تزامن Offline)</span>
+            <span className="badge-active">متصل</span>
           </div>
 
           <div className="hero-badge">
             <div className="hero-badge-dot" />
-            المنصة بتتكيف مع الخدمة
+            نزرع اليوم... لنحصد غداً
           </div>
         </div>
       </div>
