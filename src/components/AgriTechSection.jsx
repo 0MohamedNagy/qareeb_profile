@@ -36,24 +36,28 @@ export function AgriTechSection() {
         {/* Category Tabs */}
         <div className="filter-tabs reveal">
           <button
+            type="button"
             className={`filter-tab ${activeFilter === 'all' ? 'active' : ''}`}
             onClick={() => setActiveFilter('all')}
           >
             كل الحلول 🌾
           </button>
           <button
+            type="button"
             className={`filter-tab ${activeFilter === 'crop' ? 'active' : ''}`}
             onClick={() => setActiveFilter('crop')}
           >
             إدارة المزارع والمحاصيل 🌱
           </button>
           <button
+            type="button"
             className={`filter-tab ${activeFilter === 'livestock' ? 'active' : ''}`}
             onClick={() => setActiveFilter('livestock')}
           >
             الثروة الحيوانية 🐄
           </button>
           <button
+            type="button"
             className={`filter-tab ${activeFilter === 'tech' ? 'active' : ''}`}
             onClick={() => setActiveFilter('tech')}
           >
