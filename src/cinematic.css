@@ -1,0 +1,182 @@
+/* ============================================================
+   QAREEB CINEMATIC STORYTELLING
+   Website that feels like scrolling through a short film
+   ============================================================ */
+
+:root {
+  --scroll-progress: 0;
+  --parallax-slow: 0px;
+  --parallax-mid: 0px;
+  --parallax-fast: 0px;
+}
+
+/* ── Story progress (film timeline) ── */
+.story-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.story-progress-track {
+  height: 3px;
+  background: rgba(5, 150, 105, 0.12);
+  overflow: hidden;
+}
+
+.story-progress-fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: right center; /* RTL story reads right → left progress feel; scale from start */
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--color-primary-light), var(--color-primary));
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+html[dir='ltr'] .story-progress-fill,
+:root:not([dir]) .story-progress-fill {
+  transform-origin: left center;
+}
+
+.story-chapters {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .story-chapters {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.35rem 1rem 0;
+    pointer-events: auto;
+  }
+  .story-chapter {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    opacity: 0.55;
+    transition: opacity 0.3s ease, color 0.3s ease;
+  }
+  .story-chapter.active {
+    opacity: 1;
+    color: var(--color-primary-dark);
+  }
+  .story-chapter-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+/* Offset header under progress line */
+.cinematic-root .header {
+  top: 3px;
+}
+
+/* ── Parallax layers ── */
+.parallax-layer.parallax-slow {
+  transform: translate3d(0, var(--parallax-slow), 0);
+  will-change: transform;
+}
+.parallax-layer.parallax-mid {
+  transform: translate3d(0, var(--parallax-mid), 0);
+  will-change: transform;
+}
+.parallax-layer.parallax-fast {
+  transform: translate3d(0, var(--parallax-fast), 0);
+  will-change: transform;
+}
+
+/* Hero showcase keeps its own float + parallax mid */
+.hero-showcase-card.parallax-mid {
+  transition: box-shadow 0.4s ease;
+}
+
+/* ── Cinematic hero extras ── */
+.cinematic-hero {
+  isolation: isolate;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 5;
+  animation: hint-fade 2.5s ease-in-out infinite;
+}
+
+.scroll-hint-line {
+  width: 1.5px;
+  height: 28px;
+  background: linear-gradient(to bottom, var(--color-primary), transparent);
+  border-radius: 2px;
+  animation: hint-line 2.5s ease-in-out infinite;
+}
+
+@keyframes hint-fade {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes hint-line {
+  0% { transform: scaleY(0.4); transform-origin: top; opacity: 0.3; }
+  50% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0.4); opacity: 0.3; }
+}
+
+/* Story chapter blocks — slight depth between acts */
+.story-chapter-block {
+  position: relative;
+}
+
+.story-chapter-block + .story-chapter-block::before {
+  content: '';
+  display: block;
+  height: 1px;
+  margin: 0 auto;
+  max-width: 120px;
+  background: linear-gradient(90deg, transparent, var(--green-200), transparent);
+  opacity: 0.7;
+}
+
+/* Stronger reveal for film-like cuts */
+.cinematic-root .reveal {
+  transition-duration: 0.85s;
+}
+.cinematic-root .reveal-scale {
+  transition-duration: 0.9s;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer.parallax-slow,
+  .parallax-layer.parallax-mid,
+  .parallax-layer.parallax-fast {
+    transform: none !important;
+  }
+  .hero-scroll-hint,
+  .scroll-hint-line {
+    animation: none;
+  }
+  .story-progress-fill {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
