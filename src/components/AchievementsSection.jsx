@@ -1,56 +1,81 @@
-import React from 'react';
-import { TrendingUp, Award, ShieldCheck, Users, Globe, ArrowLeft } from 'lucide-react';
-import { achievements, marketInsights } from '../data/contentData';
+import React, { useEffect, useRef, useState } from 'react';
+import { achievements } from '../data/contentData';
+
+function parseTarget(value) {
+  const clean = String(value).replace(/[^0-9.]/g, '');
+  return parseFloat(clean) || 0;
+}
+
+function formatDisplay(raw, target) {
+  const prefix = String(raw).startsWith('+') ? '+' : '';
+  const suffix = String(raw).includes('%') ? '%' : String(raw).includes('K') ? 'K' : '';
+  if (suffix === 'K') return `${prefix}${Math.round(target)}${suffix}`;
+  if (suffix === '%') return `${prefix}${Math.round(target)}${suffix}`;
+  return `${prefix}${Math.round(target)}${suffix}`;
+}
+
+function CountUp({ value, active }) {
+  const target = parseTarget(value);
+  const [n, setN] = useState(0);
+
+  useEffect(() => {
+    if (!active) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      setN(target);
+      return;
+    }
+    let start = null;
+    const dur = 1400;
+    const step = (t) => {
+      if (!start) start = t;
+      const p = Math.min(1, (t - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setN(target * eased);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    const id = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(id);
+  }, [active, target]);
+
+  return <span className="stat-number">{formatDisplay(value, n)}</span>;
+}
 
 export function AchievementsSection() {
-  return (
-    <section id="achievements" className="section achievements-section">
-      <div className="container">
-        <div className="section-badge reveal" style={{ background: 'rgba(255, 255, 255, 0.15)', color: '#4ade80' }}>
-          إنجازات وأرقام تتحدث عن نفسها
-        </div>
-        <h2 className="section-title reveal" style={{ color: 'white' }}>
-          إنجازاتنا حتى الآن في قطاع الزراعة والتكنولوجيا
-        </h2>
-        <p className="section-subtitle reveal" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-          نتائج حقيقية حققها عملاؤنا وشراكاتنا عبر المنظومة الذكية.
-        </p>
+  const ref = useRef(null);
+  const [active, setActive] = useState(false);
 
-        {/* Counter Grid */}
-        <div className="achievements-grid stagger-children">
-          {achievements.map(({ value, label, desc }) => (
-            <div className="achievement-card reveal" key={label}>
-              <div className="achievement-value">{value}</div>
-              <div className="achievement-label">{label}</div>
-              <div className="achievement-desc">{desc}</div>
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setActive(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <section id="achievements" className="stats cinematic-stats" ref={ref}>
+      <div className="container">
+        <h2 className="section-title reveal" style={{ color: '#fff' }}>
+          أرقام تتكلم
+        </h2>
+        <p className="section-subtitle reveal">أثر قريب على الأرض — إنتاجية، قطعان، ومزارع</p>
+        <div className="stats-grid stagger-children">
+          {achievements.map((a) => (
+            <div className="stat-item reveal" key={a.label}>
+              <CountUp value={a.value} active={active} />
+              <span className="stat-label">{a.label}</span>
+              {a.desc ? <span className="stat-desc">{a.desc}</span> : null}
             </div>
           ))}
-        </div>
-
-        {/* Market Potential & Investor Card */}
-        <div className="market-card reveal">
-          <div className="market-card-content">
-            <h3>فرصة استثمارية واعدة في قطاع حيوي 📈</h3>
-            <p>{marketInsights.description}</p>
-            
-            <div className="market-stats-row">
-              <div className="market-stat-item">
-                <span className="market-stat-num">{marketInsights.marketCap}</span>
-                <span className="market-stat-lbl">حجم السوق المستهدف بـ {marketInsights.targetYear}</span>
-              </div>
-              <div className="market-stat-item">
-                <span className="market-stat-num">{marketInsights.growthRate}</span>
-                <span className="market-stat-lbl">معدل نمو سنوي مركب (CAGR)</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="market-card-action">
-            <a href="#contact" className="btn btn-white">
-              كن شريكاً في رحلتنا
-              <ArrowLeft size={18} color="var(--color-primary)" />
-            </a>
-          </div>
         </div>
       </div>
     </section>

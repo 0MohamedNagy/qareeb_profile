@@ -8,7 +8,7 @@ const CHAPTERS = [
   { id: 'contact', label: 'الخطوة' },
 ];
 
-export function StoryProgress({ progress }) {
+export function StoryProgress({ progress, activeChapter }) {
   return (
     <div className="story-progress" aria-hidden="true">
       <div className="story-progress-track">
@@ -18,8 +18,9 @@ export function StoryProgress({ progress }) {
         />
       </div>
       <div className="story-chapters">
-        {CHAPTERS.map((ch, i) => {
-          const active = progress >= i / Math.max(1, CHAPTERS.length - 1) - 0.05;
+        {CHAPTERS.map((ch) => {
+          const active = activeChapter === ch.id ||
+            (ch.id === 'about' && activeChapter === 'agri-tech');
           return (
             <a
               key={ch.id}

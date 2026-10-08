@@ -1,6 +1,5 @@
 /* ============================================================
-   QAREEB CINEMATIC STORYTELLING
-   Website that feels like scrolling through a short film
+   QAREEB — MAXIMUM CINEMATIC STORYTELLING
    ============================================================ */
 
 :root {
@@ -8,79 +7,152 @@
   --parallax-slow: 0px;
   --parallax-mid: 0px;
   --parallax-fast: 0px;
+  --parallax-depth: 0px;
 }
 
-/* ── Story progress (film timeline) ── */
+/* ── Film atmosphere ── */
+.film-atmosphere {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.film-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(6, 15, 29, 0.35) 100%);
+  opacity: 0.55;
+}
+
+.film-grain {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 0.4s steps(4) infinite;
+}
+
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 1%); }
+  50% { transform: translate(1%, -1%); }
+  75% { transform: translate(-1%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+.orb-1 {
+  width: 420px; height: 420px;
+  top: 10%; right: -5%;
+  background: rgba(16, 185, 129, 0.35);
+  animation: orb-drift 18s ease-in-out infinite;
+}
+.orb-2 {
+  width: 320px; height: 320px;
+  bottom: 15%; left: -8%;
+  background: rgba(59, 130, 246, 0.2);
+  animation: orb-drift 22s ease-in-out infinite reverse;
+}
+.orb-3 {
+  width: 260px; height: 260px;
+  top: 55%; left: 40%;
+  background: rgba(5, 150, 105, 0.18);
+  animation: orb-drift 14s ease-in-out infinite 2s;
+}
+
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.08); }
+}
+
+/* ── Cursor glow (desktop) ── */
+.cursor-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 280px; height: 280px;
+  margin: -140px 0 0 -140px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 60;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.14) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: soft-light;
+}
+.cursor-glow.active { opacity: 1; }
+
+/* ── Story progress ── */
 .story-progress {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 200;
   pointer-events: none;
 }
-
 .story-progress-track {
   height: 3px;
   background: rgba(5, 150, 105, 0.12);
   overflow: hidden;
 }
-
 .story-progress-fill {
   height: 100%;
   width: 100%;
-  transform-origin: right center; /* RTL story reads right → left progress feel; scale from start */
+  transform-origin: right center;
   transform: scaleX(0);
-  background: linear-gradient(90deg, var(--color-primary-light), var(--color-primary));
-  transition: transform 0.08s linear;
+  background: linear-gradient(90deg, #34d399, #059669, #047857);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+  transition: transform 0.06s linear;
   will-change: transform;
 }
+html[dir='ltr'] .story-progress-fill { transform-origin: left center; }
 
-html[dir='ltr'] .story-progress-fill,
-:root:not([dir]) .story-progress-fill {
-  transform-origin: left center;
-}
-
-.story-chapters {
-  display: none;
-}
-
-@media (min-width: 900px) {
+.story-chapters { display: none; }
+@media (min-width: 960px) {
   .story-chapters {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 0.35rem 1rem 0;
+    gap: 1.75rem;
+    padding: 0.4rem 1rem 0;
     pointer-events: auto;
   }
   .story-chapter {
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     color: var(--color-text-muted);
-    opacity: 0.55;
-    transition: opacity 0.3s ease, color 0.3s ease;
+    opacity: 0.45;
+    transition: opacity 0.35s ease, color 0.35s ease, transform 0.35s ease;
   }
   .story-chapter.active {
     opacity: 1;
     color: var(--color-primary-dark);
+    transform: translateY(1px);
   }
   .story-chapter-dot {
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: currentColor;
+    box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4);
+  }
+  .story-chapter.active .story-chapter-dot {
+    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
   }
 }
 
-/* Offset header under progress line */
-.cinematic-root .header {
-  top: 3px;
-}
+.cinematic-root .header { top: 3px; }
 
-/* ── Parallax layers ── */
+/* ── Parallax ── */
 .parallax-layer.parallax-slow {
   transform: translate3d(0, var(--parallax-slow), 0);
   will-change: transform;
@@ -94,16 +166,68 @@ html[dir='ltr'] .story-progress-fill,
   will-change: transform;
 }
 
-/* Hero showcase keeps its own float + parallax mid */
-.hero-showcase-card.parallax-mid {
-  transition: box-shadow 0.4s ease;
+/* ── Intertitles (film chapter cards) ── */
+.story-intertitle {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 4.5rem 1.5rem 3.5rem;
+  background: linear-gradient(180deg, transparent, rgba(6, 15, 29, 0.03), transparent);
+}
+.intertitle-act {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+.intertitle-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+.intertitle-sub {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.intertitle-line {
+  width: 48px;
+  height: 3px;
+  margin: 1.25rem auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-primary-light), var(--color-primary-dark));
 }
 
-/* ── Cinematic hero extras ── */
-.cinematic-hero {
-  isolation: isolate;
+/* ── Hero cinematic ── */
+.cinematic-hero { isolation: isolate; }
+.hero-title-cinematic {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
 }
-
+.hero-title-cinematic .line.accent { color: var(--color-primary); }
+.hero-lead {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+.tag-pulse {
+  display: inline-block;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+.float-card {
+  animation: float 7s ease-in-out infinite;
+}
 .hero-scroll-hint {
   position: absolute;
   bottom: 1.5rem;
@@ -119,7 +243,6 @@ html[dir='ltr'] .story-progress-fill,
   z-index: 5;
   animation: hint-fade 2.5s ease-in-out infinite;
 }
-
 .scroll-hint-line {
   width: 1.5px;
   height: 28px;
@@ -127,56 +250,127 @@ html[dir='ltr'] .story-progress-fill,
   border-radius: 2px;
   animation: hint-line 2.5s ease-in-out infinite;
 }
-
 @keyframes hint-fade {
-  0%, 100% { opacity: 0.4; }
+  0%, 100% { opacity: 0.35; }
   50% { opacity: 1; }
 }
-
 @keyframes hint-line {
-  0% { transform: scaleY(0.4); transform-origin: top; opacity: 0.3; }
+  0% { transform: scaleY(0.35); transform-origin: top; opacity: 0.25; }
   50% { transform: scaleY(1); opacity: 1; }
-  100% { transform: scaleY(0.4); opacity: 0.3; }
+  100% { transform: scaleY(0.35); opacity: 0.25; }
 }
 
-/* Story chapter blocks — slight depth between acts */
-.story-chapter-block {
+/* ── Horizontal workflow film reel ── */
+.cinematic-workflows .container { text-align: center; }
+.reel-hint {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: -1.5rem 0 1.5rem;
+  opacity: 0.85;
+}
+.workflow-reel-wrap {
+  overflow: hidden;
+  padding: 0.5rem 0 2rem;
+}
+.workflow-reel {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1rem max(1.5rem, calc((100vw - 1200px) / 2 + 1.5rem));
+  cursor: grab;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green-200) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+.workflow-reel.dragging { cursor: grabbing; scroll-snap-type: none; }
+.workflow-film-card {
+  flex: 0 0 min(300px, 78vw);
+  scroll-snap-align: start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-card);
   position: relative;
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s ease;
+  text-align: right;
+}
+.workflow-film-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+.film-card-num {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--green-200);
+}
+.film-card-example {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+.film-card-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+}
+
+/* ── Stats ── */
+.cinematic-stats .stat-number {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  color: #fff;
+  display: block;
+  margin-bottom: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+.cinematic-stats .stat-desc {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Stronger reveals ── */
+.cinematic-max .reveal {
+  transition-duration: 0.9s;
+}
+.cinematic-max .reveal-scale {
+  transition-duration: 1s;
 }
 
 .story-chapter-block + .story-chapter-block::before {
-  content: '';
-  display: block;
-  height: 1px;
-  margin: 0 auto;
-  max-width: 120px;
-  background: linear-gradient(90deg, transparent, var(--green-200), transparent);
-  opacity: 0.7;
+  content: none;
 }
 
-/* Stronger reveal for film-like cuts */
-.cinematic-root .reveal {
-  transition-duration: 0.85s;
-}
-.cinematic-root .reveal-scale {
-  transition-duration: 0.9s;
+/* Magnetic primary feel */
+.btn-magnetic:hover {
+  transform: translateY(-3px) scale(1.02);
 }
 
-/* Respect reduced motion */
+/* Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .parallax-layer.parallax-slow,
   .parallax-layer.parallax-mid,
   .parallax-layer.parallax-fast {
     transform: none !important;
   }
-  .hero-scroll-hint,
-  .scroll-hint-line {
-    animation: none;
+  .film-grain, .orb, .float-card, .tag-pulse,
+  .hero-scroll-hint, .scroll-hint-line {
+    animation: none !important;
   }
-  .story-progress-fill {
-    transition: none;
-  }
-  html {
-    scroll-behavior: auto;
-  }
+  .cursor-glow { display: none; }
+  .story-progress-fill { transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+@media (max-width: 768px) {
+  .film-vignette { opacity: 0.35; }
+  .orb { opacity: 0.2; }
+  .story-intertitle { padding: 3rem 1rem 2rem; }
 }

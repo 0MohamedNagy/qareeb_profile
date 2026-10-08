@@ -4,7 +4,6 @@ import { ArrowLeft, Search, Sprout, PawPrint, Droplets, Smartphone, CheckCircle 
 export function HeroSection() {
   return (
     <section id="home" className="hero cinematic-hero">
-      {/* Parallax layers — move at different speeds like a video shot */}
       <div className="parallax-layer parallax-slow hero-shape hero-shape-1" aria-hidden="true" />
       <div className="parallax-layer parallax-mid hero-shape hero-shape-2" aria-hidden="true" />
       <div className="parallax-layer parallax-fast hero-shape hero-shape-3" aria-hidden="true" />
@@ -13,12 +12,14 @@ export function HeroSection() {
       <div className="container hero-container">
         <div className="hero-content reveal">
           <div className="hero-top-tag">
-            <span>🌱 التقنية... من أجل الزراعة والحياة</span>
+            <span className="tag-pulse">🌱 التقنية... من أجل الزراعة والحياة</span>
           </div>
-          <h1>
-            حلول تقنية ذكية <span>للزراعة والثروة الحيوانية</span> والمنصات المحلية
+          <h1 className="hero-title-cinematic">
+            <span className="line">حلول تقنية ذكية</span>
+            <span className="line accent">للزراعة والثروة الحيوانية</span>
+            <span className="line">والمنصات المحلية</span>
           </h1>
-          <p>
+          <p className="hero-lead">
             قريب نطور أنظمة وتطبيقات متكاملة تربط الأرض والقطعان والتكنولوجيا بالذكاء الاصطناعي — لرفع الإنتاجية، خفض التكاليف، وتقديم تجربة خدمات محلية موحدة وموثوقة.
           </p>
 
@@ -38,7 +39,7 @@ export function HeroSection() {
           </div>
 
           <div className="hero-actions">
-            <a href="#agri-tech" className="btn btn-primary">
+            <a href="#about" className="btn btn-primary btn-magnetic">
               ابدأ القصة
               <ArrowLeft size={20} />
             </a>
@@ -48,7 +49,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="hero-showcase-card parallax-layer parallax-mid reveal-scale">
+        <div className="hero-showcase-card parallax-layer parallax-mid reveal-scale float-card">
           <div className="showcase-header-bar">
             <div className="showcase-status-badge">
               <span className="dot-live" />
@@ -72,7 +73,6 @@ export function HeroSection() {
                 <div className="showcase-item-sub">صحة النبات 92% ✅</div>
               </div>
             </div>
-
             <div className="showcase-item">
               <div className="showcase-item-icon" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
                 <PawPrint size={22} color="#60a5fa" />
@@ -82,7 +82,6 @@ export function HeroSection() {
                 <div className="showcase-item-sub">78 رأس ماشية 🐄</div>
               </div>
             </div>
-
             <div className="showcase-item">
               <div className="showcase-item-icon" style={{ background: 'rgba(245, 158, 11, 0.2)' }}>
                 <Droplets size={22} color="#fbbf24" />
@@ -92,7 +91,6 @@ export function HeroSection() {
                 <div className="showcase-item-sub">توفير 30% مياه 💧</div>
               </div>
             </div>
-
             <div className="showcase-item">
               <div className="showcase-item-icon" style={{ background: 'rgba(139, 92, 246, 0.2)' }}>
                 <Smartphone size={22} color="#c084fc" />

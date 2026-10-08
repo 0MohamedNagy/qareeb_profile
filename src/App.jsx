@@ -12,10 +12,12 @@ import { VisionSection } from './components/VisionSection';
 import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 import { StoryProgress } from './components/StoryProgress';
+import { FilmAtmosphere } from './components/FilmAtmosphere';
+import { StoryIntertitle } from './components/StoryIntertitle';
 import { useCinematicScroll } from './hooks/useCinematicScroll';
+import { useCursorGlow } from './hooks/useCursorGlow';
 import './index.css';
 
-/* ── Scroll Reveal Hook ── */
 function useScrollReveal() {
   useEffect(() => {
     const selector = '.reveal, .reveal-right, .reveal-left, .reveal-scale';
@@ -28,7 +30,7 @@ function useScrollReveal() {
           }
         });
       },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -8% 0px' }
     );
 
     const watch = (root) => {
@@ -48,7 +50,6 @@ function useScrollReveal() {
       });
     });
     mo.observe(document.body, { childList: true, subtree: true });
-
     return () => {
       observer.disconnect();
       mo.disconnect();
@@ -60,9 +61,10 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const { progress } = useCinematicScroll();
+  const { progress, activeChapter } = useCinematicScroll();
 
   useScrollReveal();
+  useCursorGlow(true);
 
   useEffect(() => {
     const onScroll = () => {
@@ -83,8 +85,9 @@ export default function App() {
   };
 
   return (
-    <div className="app-root cinematic-root">
-      <StoryProgress progress={progress} />
+    <div className="app-root cinematic-root cinematic-max">
+      <FilmAtmosphere />
+      <StoryProgress progress={progress} activeChapter={activeChapter} />
 
       <button
         className={`scroll-top ${showScrollTop ? 'visible' : ''}`}
@@ -102,30 +105,49 @@ export default function App() {
       />
 
       <main className="story-reel">
-        {/* Chapter 1 — Opening shot */}
         <div className="story-chapter-block" data-chapter="1">
           <HeroSection />
         </div>
 
-        {/* Chapter 2 — World / products */}
+        <StoryIntertitle
+          act="الفصل الأول"
+          title="العالم اللي بنبنيه"
+          subtitle="زراعة · تقنية · مجتمع محلي"
+        />
+
         <div className="story-chapter-block" data-chapter="2">
           <AgriTechSection />
           <TechServicesSection />
         </div>
 
-        {/* Chapter 3 — Conflict */}
-        <div className="story-chapter-block" data-chapter="3" id="problem-wrap">
+        <StoryIntertitle
+          act="الفصل الثاني"
+          title="المشكلة"
+          subtitle="التشتت في الأدوات والثقة والتجربة"
+        />
+
+        <div className="story-chapter-block" data-chapter="3">
           <ProblemSection />
         </div>
 
-        {/* Chapter 4 — Resolution */}
+        <StoryIntertitle
+          act="الفصل الثالث"
+          title="الحل"
+          subtitle="منصة واحدة… مسارات متعددة"
+        />
+
         <div className="story-chapter-block" data-chapter="4">
           <WorkflowsSection />
           <AchievementsSection />
           <TrustSection />
         </div>
 
-        {/* Chapter 5 — Closing */}
+        <StoryIntertitle
+          act="الخاتمة"
+          title="الرؤية والخطوة الجاية"
+          subtitle="انضم للقصة"
+        />
+
         <div className="story-chapter-block" data-chapter="5">
           <VisionSection />
           <CTASection />
