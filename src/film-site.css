@@ -1,24 +1,22 @@
 /* ============================================================
-   QAREEB FILM SITE — Pear-inspired immersive scroll
-   Full-bleed scenes · editorial type · minimal chrome
+   QAREEB FILM SITE — Egypt-local · warm MENA · readable images
    ============================================================ */
 
 .film-root {
-  --film-cream: #f4efe6;
+  --film-sand: #e8d5b7;
+  --film-terracotta: #c4784a;
   --film-ink: #0c0c0c;
-  --film-muted: rgba(255, 255, 255, 0.78);
-  --film-accent: #c4a574;
-  background: #000;
+  --film-muted: rgba(255, 255, 255, 0.88);
+  --film-accent: #e8b86d;
+  --film-green: #1a7a52;
+  background: #0a0a0a;
   color: #fff;
   font-family: 'Cairo', 'IBM Plex Sans Arabic', system-ui, sans-serif;
 }
 
-/* Progress */
 .film-root .story-progress {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
   pointer-events: none;
 }
@@ -31,42 +29,40 @@
   width: 100%;
   transform-origin: right center;
   transform: scaleX(0);
-  background: var(--film-accent);
+  background: linear-gradient(90deg, var(--film-green), var(--film-accent));
   will-change: transform;
 }
 
-/* Nav */
 .film-nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 90;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.1rem 1.75rem;
-  mix-blend-mode: difference;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 100%);
 }
 .film-logo {
   font-weight: 900;
-  font-size: 1.15rem;
-  letter-spacing: 0.02em;
+  font-size: 1.2rem;
   color: #fff;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
 }
 .film-nav-links {
   display: none;
   gap: 1.75rem;
 }
 .film-nav-links a {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.82rem;
   font-weight: 600;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
-.film-nav-links a:hover { color: #fff; }
+.film-nav-links a:hover { color: var(--film-accent); }
 .film-menu-btn {
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   font-family: inherit;
   font-size: 0.78rem;
@@ -74,6 +70,7 @@
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
   cursor: pointer;
+  backdrop-filter: blur(6px);
 }
 @media (min-width: 800px) {
   .film-nav-links { display: flex; }
@@ -84,7 +81,7 @@
   position: fixed;
   inset: 0;
   z-index: 85;
-  background: rgba(0, 0, 0, 0.94);
+  background: rgba(8, 8, 8, 0.96);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,7 +94,7 @@
   font-weight: 800;
 }
 
-/* Scenes */
+/* Scenes — images must be VISIBLE */
 .film-scene {
   position: relative;
   min-height: 100vh;
@@ -112,24 +109,25 @@
   background-image: var(--scene-img);
   background-size: cover;
   background-position: center;
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
+/* أخف من قبل — الصورة تظهر */
 .film-scene-veil {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.55) 45%,
-    rgba(0, 0, 0, 0.72) 100%
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0.62) 100%
   );
 }
 .film-scene--warm .film-scene-veil {
   background: linear-gradient(
     180deg,
-    rgba(20, 12, 4, 0.2) 0%,
-    rgba(20, 12, 4, 0.5) 50%,
-    rgba(12, 8, 4, 0.75) 100%
+    rgba(30, 18, 8, 0.12) 0%,
+    rgba(20, 12, 4, 0.32) 45%,
+    rgba(12, 8, 4, 0.58) 100%
   );
 }
 
@@ -141,48 +139,59 @@
   padding: 6rem 0;
 }
 .film-align-center { text-align: center; }
-.film-align-start { text-align: right; margin-right: max(1.25rem, calc((100vw - 1100px) / 2)); margin-left: auto; }
-.film-align-end { text-align: right; margin-left: max(1.25rem, calc((100vw - 1100px) / 2)); margin-right: auto; }
+.film-align-start {
+  text-align: right;
+  margin-right: max(1.25rem, calc((100vw - 1100px) / 2));
+  margin-left: auto;
+}
+.film-align-end {
+  text-align: right;
+  margin-left: max(1.25rem, calc((100vw - 1100px) / 2));
+  margin-right: auto;
+}
 
 .film-kicker {
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.14em;
   color: var(--film-accent);
   margin-bottom: 1rem;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.5);
 }
 .film-title {
-  font-size: clamp(2.1rem, 6vw, 4rem);
+  font-size: clamp(2.1rem, 6vw, 3.8rem);
   font-weight: 900;
-  line-height: 1.2;
+  line-height: 1.22;
   color: #fff;
   margin: 0 0 1.1rem;
   white-space: pre-line;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.45);
 }
 .film-body {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 2vw, 1.18rem);
   line-height: 1.85;
   color: var(--film-muted);
   max-width: 34em;
   margin: 0;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
 }
 .film-align-center .film-body { margin-inline: auto; }
 
 .film-cta {
   display: inline-flex;
   margin-top: 1.75rem;
-  padding: 0.85rem 1.5rem;
+  padding: 0.9rem 1.6rem;
   border-radius: 999px;
-  background: #fff;
-  color: #111;
+  background: var(--film-green);
+  color: #fff;
   font-weight: 800;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 28px rgba(26, 122, 82, 0.4);
   transition: transform 0.25s ease, background 0.25s ease;
 }
 .film-cta:hover {
   transform: translateY(-2px);
-  background: var(--film-cream);
+  background: #15905f;
 }
 
 .film-footer {
@@ -192,7 +201,7 @@
   padding: 1.25rem 1.75rem;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.45);
-  background: #000;
+  background: #050505;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
