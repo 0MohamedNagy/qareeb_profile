@@ -4,13 +4,13 @@ import { ArrowLeft, Search, Sprout, PawPrint, Droplets, Smartphone, CheckCircle 
 export function HeroSection() {
   return (
     <section id="home" className="hero cinematic-hero">
-      <div className="parallax-layer parallax-slow hero-shape hero-shape-1" aria-hidden="true" />
-      <div className="parallax-layer parallax-mid hero-shape hero-shape-2" aria-hidden="true" />
-      <div className="parallax-layer parallax-fast hero-shape hero-shape-3" aria-hidden="true" />
-      <div className="parallax-layer parallax-slow hero-dots" aria-hidden="true" />
+      <div className="hero-shape hero-shape-1" aria-hidden="true" />
+      <div className="hero-shape hero-shape-2" aria-hidden="true" />
+      <div className="hero-shape hero-shape-3" aria-hidden="true" />
+      <div className="hero-dots" aria-hidden="true" />
 
       <div className="container hero-container">
-        <div className="hero-content reveal">
+        <div className="hero-content">
           <div className="hero-top-tag">
             <span className="tag-pulse">🌱 التقنية... من أجل الزراعة والحياة</span>
           </div>
@@ -43,13 +43,13 @@ export function HeroSection() {
               ابدأ القصة
               <ArrowLeft size={20} />
             </a>
-            <a href="#contact" className="btn btn-secondary">
+            <a href="#contact" className="btn btn-secondary btn-magnetic">
               تواصل مع الشركاء
             </a>
           </div>
         </div>
 
-        <div className="hero-showcase-card parallax-layer parallax-mid reveal-scale float-card">
+        <div className="hero-showcase-card float-card">
           <div className="showcase-header-bar">
             <div className="showcase-status-badge">
               <span className="dot-live" />

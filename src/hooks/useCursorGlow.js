@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-/** Desktop soft spotlight that follows the pointer — film lighting feel */
 export function useCursorGlow(enabled = true) {
   useEffect(() => {
     if (!enabled) return;
@@ -13,16 +12,11 @@ export function useCursorGlow(enabled = true) {
     el.setAttribute('aria-hidden', 'true');
     document.body.appendChild(el);
 
-    let x = 0;
-    let y = 0;
-    let cx = 0;
-    let cy = 0;
-    let raf = 0;
-
+    let x = 0, y = 0, cx = 0, cy = 0, raf = 0;
     const loop = () => {
-      cx += (x - cx) * 0.12;
-      cy += (y - cy) * 0.12;
-      el.style.transform = `translate(${cx}px, ${cy}px)`;
+      cx += (x - cx) * 0.14;
+      cy += (y - cy) * 0.14;
+      el.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -35,12 +29,12 @@ export function useCursorGlow(enabled = true) {
     const onLeave = () => el.classList.remove('active');
 
     window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('pointerleave', onLeave);
+    document.addEventListener('pointerleave', onLeave);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerleave', onLeave);
+      document.removeEventListener('pointerleave', onLeave);
       el.remove();
     };
   }, [enabled]);

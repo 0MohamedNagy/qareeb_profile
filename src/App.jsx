@@ -14,57 +14,32 @@ import { Footer } from './components/Footer';
 import { StoryProgress } from './components/StoryProgress';
 import { FilmAtmosphere } from './components/FilmAtmosphere';
 import { StoryIntertitle } from './components/StoryIntertitle';
-import { useCinematicScroll } from './hooks/useCinematicScroll';
+import { useActiveChapter, useReducedMotion } from './hooks/useCinematicScroll';
 import { useCursorGlow } from './hooks/useCursorGlow';
+import { createCinematicEngine } from './lib/cinematicEngine';
 import './index.css';
-
-function useScrollReveal() {
-  useEffect(() => {
-    const selector = '.reveal, .reveal-right, .reveal-left, .reveal-scale';
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -8% 0px' }
-    );
-
-    const watch = (root) => {
-      const list = root instanceof Element && root.matches?.(selector) ? [root] : [];
-      const nested = root.querySelectorAll ? root.querySelectorAll(selector) : [];
-      [...list, ...nested].forEach((el) => {
-        if (!el.classList.contains('visible')) observer.observe(el);
-      });
-    };
-
-    watch(document);
-    const mo = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-          if (node instanceof Element) watch(node);
-        });
-      });
-    });
-    mo.observe(document.body, { childList: true, subtree: true });
-    return () => {
-      observer.disconnect();
-      mo.disconnect();
-    };
-  }, []);
-}
+import './cinematic.css';
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const { progress, activeChapter } = useCinematicScroll();
+  const activeChapter = useActiveChapter();
+  const reducedMotion = useReducedMotion();
 
-  useScrollReveal();
-  useCursorGlow(true);
+  useCursorGlow(!reducedMotion);
+
+  // Boot GSAP + Lenis engine after paint
+  useEffect(() => {
+    let engine = null;
+    const t = window.setTimeout(() => {
+      engine = createCinematicEngine({ reducedMotion });
+    }, 50);
+    return () => {
+      window.clearTimeout(t);
+      engine?.destroy();
+    };
+  }, [reducedMotion]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -87,7 +62,7 @@ export default function App() {
   return (
     <div className="app-root cinematic-root cinematic-max">
       <FilmAtmosphere />
-      <StoryProgress progress={progress} activeChapter={activeChapter} />
+      <StoryProgress activeChapter={activeChapter} />
 
       <button
         className={`scroll-top ${showScrollTop ? 'visible' : ''}`}

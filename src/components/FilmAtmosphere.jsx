@@ -1,6 +1,5 @@
 import React from 'react';
 
-/** Ambient film layer: grain + soft vignette + floating orbs */
 export function FilmAtmosphere() {
   return (
     <div className="film-atmosphere" aria-hidden="true">

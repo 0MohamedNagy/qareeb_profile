@@ -8,19 +8,17 @@ const CHAPTERS = [
   { id: 'contact', label: 'الخطوة' },
 ];
 
-export function StoryProgress({ progress, activeChapter }) {
+export function StoryProgress({ activeChapter }) {
   return (
     <div className="story-progress" aria-hidden="true">
       <div className="story-progress-track">
-        <div
-          className="story-progress-fill"
-          style={{ transform: `scaleX(${progress})` }}
-        />
+        <div className="story-progress-fill" />
       </div>
       <div className="story-chapters">
         {CHAPTERS.map((ch) => {
-          const active = activeChapter === ch.id ||
-            (ch.id === 'about' && activeChapter === 'agri-tech');
+          const active =
+            activeChapter === ch.id ||
+            (ch.id === 'about' && (activeChapter === 'agri-tech' || activeChapter === 'tech-services'));
           return (
             <a
               key={ch.id}
