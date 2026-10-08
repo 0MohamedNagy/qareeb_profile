@@ -1,0 +1,62 @@
+/* Qareeb Design Tokens — UI Design System foundation */
+:root {
+  /* Brand */
+  --qb-green-50: #ecfdf5;
+  --qb-green-100: #d1fae5;
+  --qb-green-500: #10b981;
+  --qb-green-600: #059669;
+  --qb-green-700: #047857;
+  --qb-green-800: #065f46;
+  --qb-green-900: #064e3b;
+
+  /* Neutrals */
+  --qb-ink: #0b1220;
+  --qb-ink-2: #1e293b;
+  --qb-muted: #64748b;
+  --qb-line: #e2e8f0;
+  --qb-bg: #f8fafc;
+  --qb-white: #ffffff;
+
+  /* Semantic */
+  --qb-accent: #0d9488;
+  --qb-warm: #f59e0b;
+
+  /* Type */
+  --qb-font: 'Cairo', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --qb-fs-xs: 0.75rem;
+  --qb-fs-sm: 0.875rem;
+  --qb-fs-base: 1rem;
+  --qb-fs-lg: 1.125rem;
+  --qb-fs-xl: 1.25rem;
+  --qb-fs-2xl: 1.5rem;
+  --qb-fs-3xl: 1.875rem;
+  --qb-fs-4xl: 2.25rem;
+  --qb-fs-5xl: clamp(2.25rem, 5vw, 3.25rem);
+
+  /* Space — 8pt grid */
+  --qb-1: 0.25rem;
+  --qb-2: 0.5rem;
+  --qb-3: 0.75rem;
+  --qb-4: 1rem;
+  --qb-5: 1.25rem;
+  --qb-6: 1.5rem;
+  --qb-8: 2rem;
+  --qb-10: 2.5rem;
+  --qb-12: 3rem;
+  --qb-16: 4rem;
+  --qb-20: 5rem;
+  --qb-24: 6rem;
+
+  /* Radius & shadow */
+  --qb-r-sm: 8px;
+  --qb-r-md: 12px;
+  --qb-r-lg: 16px;
+  --qb-r-xl: 24px;
+  --qb-r-full: 999px;
+  --qb-shadow: 0 4px 24px rgba(11, 18, 32, 0.06);
+  --qb-shadow-lg: 0 16px 48px rgba(11, 18, 32, 0.1);
+
+  /* Motion */
+  --qb-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --qb-dur: 0.35s;
+}

@@ -10,10 +10,9 @@ export function createCinematicEngine({ reducedMotion = false } = {}) {
 
   if (!reducedMotion) {
     lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.35,
     })
     lenis.on('scroll', ScrollTrigger.update)
     const ticker = (time) => lenis.raf(time * 1000)
@@ -30,46 +29,22 @@ export function createCinematicEngine({ reducedMotion = false } = {}) {
       })
       cleanups.push(() => st.kill())
     }
-  }
 
-  // Scene parallax + copy entrance
-  document.querySelectorAll('.film-scene').forEach((scene) => {
-    const bg = scene.querySelector('.film-scene-bg')
-    const copy = scene.querySelector('.film-scene-copy')
-
-    if (bg && !reducedMotion) {
-      gsap.fromTo(
-        bg,
-        { scale: 1.12, y: 40 },
-        {
-          scale: 1,
-          y: -30,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: scene,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        }
-      )
-    }
-
-    if (copy && !reducedMotion) {
-      gsap.from(copy.children, {
-        y: 48,
+    // Subtle entrance for sections
+    gsap.utils.toArray('.mk-card, .mk-step, .mk-feature').forEach((el) => {
+      gsap.from(el, {
+        y: 28,
         opacity: 0,
-        duration: 0.9,
-        stagger: 0.12,
-        ease: 'power3.out',
+        duration: 0.55,
+        ease: 'power2.out',
         scrollTrigger: {
-          trigger: scene,
-          start: 'top 70%',
+          trigger: el,
+          start: 'top 88%',
           toggleActions: 'play none none none',
         },
       })
-    }
-  })
+    })
+  }
 
   requestAnimationFrame(() => ScrollTrigger.refresh())
 

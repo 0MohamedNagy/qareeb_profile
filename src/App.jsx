@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { FilmSite } from './components/FilmSite'
+import { MarketingSite } from './components/MarketingSite'
 import { createCinematicEngine } from './lib/cinematicEngine'
 import { useReducedMotion } from './hooks/useCinematicScroll'
-import './index.css'
-import './film-site.css'
+import './styles/tokens.css'
+import './styles/marketing.css'
 
 export default function App() {
   const reducedMotion = useReducedMotion()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     let engine = null
     const t = window.setTimeout(() => {
       engine = createCinematicEngine({ reducedMotion })
-    }, 100)
+    }, 80)
     return () => {
       window.clearTimeout(t)
       engine?.destroy()
@@ -21,12 +22,20 @@ export default function App() {
   }, [reducedMotion])
 
   useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
   }, [menuOpen])
 
   return (
-    <div className="film-root">
-      <FilmSite menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    </div>
+    <MarketingSite
+      menuOpen={menuOpen}
+      setMenuOpen={setMenuOpen}
+      scrolled={scrolled}
+    />
   )
 }
