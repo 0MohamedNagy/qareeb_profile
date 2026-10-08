@@ -1,26 +1,21 @@
 import React from 'react';
+import { steps } from '../data/contentData';
 
 export function HowItWorksSection() {
-  const steps = [
-    { n: '٠١', title: 'حدد احتياجك', desc: 'فئة، شريك معين، أو احتياج عام' },
-    { n: '٠٢', title: 'قريب بيوجهك', desc: 'للفئة الصح والـ Workflow الخاص بيها' },
-    { n: '٠٣', title: 'أنجز المعاملة', desc: 'حجز، أوردر، طلب، أو شراء — حسب الفئة' },
-    { n: '٠٤', title: 'ثق وقيّم', desc: 'التوثيق والتقييمات ظاهرة طول الوقت' },
-  ];
-
   return (
-    <section id="how-it-works" className="stats">
+    <section id="how" className="section section-dark">
       <div className="container">
-        <h2 className="section-title reveal" style={{ color: 'white' }}>إزاي قريب بيشتغل</h2>
-        <p className="section-subtitle reveal" style={{ color: 'rgba(255,255,255,0.75)' }}>
-          المستخدم بيبدأ من احتياجه، والمنصة بتوجهه للـ Workflow المناسب — من غير ما نفترض طريقة معينة
-        </p>
-        <div className="stats-grid stagger-children">
-          {steps.map(({ n, title, desc }) => (
-            <div className="stat-item reveal" key={n}>
-              <div className="stat-icon" style={{ fontSize: '1.1rem', fontWeight: 700 }}>{n}</div>
-              <span className="stat-number" style={{ fontSize: '1.15rem' }}>{title}</span>
-              <span className="stat-label">{desc}</span>
+        <div className="section-head on-dark">
+          <span className="eyebrow">كيف يعمل</span>
+          <h2>أربع خطوات بسيطة</h2>
+          <p>من أول فتح للتطبيق لحد ما تخلّص احتياجك بثقة.</p>
+        </div>
+        <div className="steps-row">
+          {steps.map((s) => (
+            <div className="step-card" key={s.n}>
+              <span className="step-num">{s.n}</span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
             </div>
           ))}
         </div>

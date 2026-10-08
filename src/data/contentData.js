@@ -1,145 +1,122 @@
 export const navItems = [
   { href: '#home', label: 'الرئيسية' },
-  { href: '#agri-tech', label: 'الزراعة والثروة الحيوانية' },
-  { href: '#tech-services', label: 'خدماتنا التقنية' },
-  { href: '#workflows', label: 'المنصة المحلية' },
-  { href: '#achievements', label: 'إنجازاتنا' },
+  { href: '#services', label: 'الخدمات' },
+  { href: '#events', label: 'الفعاليات' },
+  { href: '#how', label: 'كيف يعمل' },
   { href: '#trust', label: 'لماذا قريب' },
-  { href: '#contact', label: 'تواصل معنا' },
+  { href: '#contact', label: 'تواصل' },
 ];
 
-// 1. AgriTech & Livestock Features (من الكروت البصرية 1، 2، 3، 4، 5)
-export const agriSolutions = [
-  {
-    id: 'crop-mgmt',
-    iconName: 'Sprout',
-    title: 'إدارة المزارع والمحاصيل',
-    desc: 'تحليل صحة النبات والتربة، توصيات مخصصة، وجدولة الري لزيادة إنتاجية المحاصيل.',
-    tag: 'ذكاء اصطناعي'
-  },
-  {
-    id: 'livestock-mgmt',
-    iconName: 'PawPrint',
-    title: 'إدارة الثروة الحيوانية',
-    desc: 'متابعة الحالة الصحية للقطعان، التغذية المقترحة، والتطعيمات لرفع الكفاءة والإنتاجية.',
-    tag: 'رعاية فائقة'
-  },
-  {
-    id: 'smart-irrigation',
-    iconName: 'Droplets',
-    title: 'ري ذكي وتوفير الموارد',
-    desc: 'أنظمة الاستشعار الذكية لتوفير استهلاك المياه وخفض التكاليف التشغيلية بنسبة 30%.',
-    tag: 'استدامة'
-  },
-  {
-    id: 'iot-sensors',
-    iconName: 'Cpu',
-    title: 'إنترنت الأشياء والحساسات (IoT)',
-    desc: 'ربط المزرعة بحساسات ذكية لمراقبة الرطوبة، الحرارة، والطقس في الوقت الفعلي.',
-    tag: 'تقنية حديثة'
-  },
-  {
-    id: 'ai-analytics',
-    iconName: 'LineChart',
-    title: 'تحليلات وتقارير تنبؤية',
-    desc: 'تقارير ذكية مدعومة بالذكاء الاصطناعي لمساعدتك على اتخاذ القرارات الزراعية والمالية السليمة.',
-    tag: 'قرارات دقيقة'
-  },
-  {
-    id: 'feed-inventory',
-    iconName: 'Boxes',
-    title: 'إدارة الأعلاف والمخزون',
-    desc: 'تتبع المخزون، المشتريات، والموردين بمرونة وسهولة مع تنبيهات عند النقص.',
-    tag: 'إدارة شاملة'
-  },
-  {
-    id: 'machinery-gps',
-    iconName: 'Tractor',
-    title: 'تتبع وصيانة المعدات (GPS)',
-    desc: 'تتبع الآلات الزراعية، جدولة الصيانة الدورية، ومتابعة استهلاك الوقود.',
-    tag: 'تتبع GPS'
-  },
-  {
-    id: 'agri-market',
-    iconName: 'Store',
-    title: 'سوق المزارعين المباشر',
-    desc: 'منصة مفتوحة لبيع وشراء المحاصيل، الأعلاف والمستلزمات الزراعية بدون وسطاء.',
-    tag: 'سوق مفتوح'
-  }
-];
-
-// 2. Specialized Tech Services (من الكارت الأول)
-export const techServices = [
-  {
-    iconName: 'LayoutDashboard',
-    title: 'أنظمة إدارة المزارع والثروة الحيوانية',
-    desc: 'تطبيقات وأنظمة متكاملة تساعد الشركات والمزارع على إدارة أعمالهم بكفاءة واستدامة.'
-  },
-  {
-    iconName: 'Compass',
-    title: 'تتبع المركبات والمعدات (GPS)',
-    desc: 'أنظمة تتبع الجغرافيا والمعدات الثقيلة لرفع الكفاءة التشغيلية للأصول.'
-  },
-  {
-    iconName: 'Radio',
-    title: 'إنترنت الأشياء (IoT) والحساسات',
-    desc: 'حلول ربط أجهزة الاستشعار بالمزارع والبيوت المحمية لمتابعة المناخ والتربة.'
-  },
-  {
-    iconName: 'BrainCircuit',
-    title: 'حلول الذكاء الاصطناعي التنبؤية',
-    desc: 'بناء نماذج تشخيص الأمراض والآفات الزراعية والتنبؤ بالإنتاجية بدقة.'
-  },
-  {
-    iconName: 'Smartphone',
-    title: 'تطبيقات الجوال (Android & iOS)',
-    desc: 'تطبيقات سهلة الاستخدام تعمل حتى بدون اتصال بالإنترنت وتتزامن فور الاتصال.'
-  },
-  {
-    iconName: 'Headphones',
-    title: 'استشارات تقنية ودعم فني متواصل',
-    desc: 'فريق متخصص يجمع بين الخبرة الزراعية العميقة والتطوير التقني المتقدم.'
-  }
-];
-
-// 3. Local Workflows (الخدمات المحلية التي تم الحفاظ عليها)
-export const workflows = [
-  { id: 'appointments', iconName: 'Calendar', title: 'مواعيد وعيادات', example: 'دكاترة وعيادات بيطرية وزراعية', desc: 'احجز موعدك، اختار الوقت المناسب، واستلم تذكير قبل الزيارة.' },
-  { id: 'orders', iconName: 'UtensilsCrossed', title: 'أوردرات ومستلزمات', example: 'مطاعم، ومستلزمات زراعية', desc: 'اطلب من المنيو أو المنتجات، تابع حالة الأوردر لحظة بلحظة.' },
-  { id: 'services', iconName: 'Wrench', title: 'طلب خدمة وصيانة', example: 'صيانة معدات، فنيين، وخدمات', desc: 'وصف احتياجك، استلم عرض سعر أو اتربط بأقرب شريك متاح.' },
-  { id: 'rides', iconName: 'Car', title: 'طلب نقل وتوصيل', example: 'نقل مواشي، نقل محاصيل، وتوصيل', desc: 'حدد نقطة الانطلاق والوجهة، وتابع رحلتك لحظة بلحظة.' },
-  { id: 'marketplace', iconName: 'Store', title: 'بيع وشراء محلي', example: 'سوق محلي ومستلزمات مزارع', desc: 'اعرض غرضك أو دور على اللي محتاجه من ناس حواليك.' },
-  { id: 'events', iconName: 'PartyPopper', title: 'حجوزات وفعاليات', example: 'قاعات، معارض زراعية ومناسبات', desc: 'شوف التوفر والباقات، واحجز مكانك للمناسبة بثقة.' },
-];
-
-// 4. Investor & Achievements Data (من الكروت البصرية 5)
-export const achievements = [
-  { value: '+40%', label: 'زيادة في إنتاجية المزارع', desc: 'رفع الكفاءة وخفض التكاليف التشغيلية' },
-  { value: '+25K', label: 'رأس ماشية تحت الإدارة', desc: 'متابعة صحية وتغذية دقيقة في الوقت الفعلي' },
-  { value: '+850', label: 'مزرعة مسجلة', desc: 'تعتمد على حلول قريب الذكية' },
-  { value: '+10K', label: 'مستخدم نشط', desc: 'من مزارعين، شركاء، وطالبي خدمات' }
-];
-
-export const marketInsights = {
-  marketCap: '50+ مليار دولار',
-  growthRate: '12.3%',
-  targetYear: '2030',
-  description: 'السوق الزراعي والحيواني في المنطقة ينمو بسرعة مدفوعاً بالحاجة للأمن الغذائي والتكنولوجيا.'
+/** صور عالية الجودة (Unsplash) */
+export const images = {
+  hero: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1800&q=80',
+  community: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80',
+  market: 'https://images.unsplash.com/photo-1488459716781-31db5253d4b4?auto=format&fit=crop&w=1200&q=80',
+  clinic: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+  delivery: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80',
+  farm: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3030?auto=format&fit=crop&w=1200&q=80',
+  event1: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80',
+  event2: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80',
+  event3: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80',
+  trust: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80',
 };
 
-// 5. Trust & Why Choose Qareeb
+export const services = [
+  {
+    id: 'appointments',
+    title: 'مواعيد وعيادات',
+    desc: 'احجز موعدك مع دكتور أو عيادة قريبة — وقت واضح وتذكير قبل الزيارة.',
+    image: images.clinic,
+    tag: 'حجز',
+  },
+  {
+    id: 'orders',
+    title: 'أوردرات ومحلات',
+    desc: 'اطلب من محلات ومنتجات حواليك وتابع حالة الطلب لحظة بلحظة.',
+    image: images.market,
+    tag: 'طلب',
+  },
+  {
+    id: 'services',
+    title: 'صيانة وخدمات',
+    desc: 'وصف احتياجك، استلم عرض سعر، واتربط بأقرب فني أو شريك متاح.',
+    image: images.delivery,
+    tag: 'خدمة',
+  },
+  {
+    id: 'marketplace',
+    title: 'بيع وشراء محلي',
+    desc: 'اعرض غرضك أو دور على اللي محتاجه من ناس في نفس المنطقة.',
+    image: images.community,
+    tag: 'سوق',
+  },
+  {
+    id: 'agri',
+    title: 'زراعة وثروة حيوانية',
+    desc: 'حلول ومتابعة للمزارع والقطعان — من المتابعة اليومية لربط الخدمات.',
+    image: images.farm,
+    tag: 'زراعة',
+  },
+  {
+    id: 'events',
+    title: 'فعاليات وحجوزات',
+    desc: 'اكتشف فعاليات محلية واحجز مكانك في معارض ومناسبات مجتمعك.',
+    image: images.event1,
+    tag: 'فعالية',
+  },
+];
+
+export const events = [
+  {
+    id: 'e1',
+    title: 'سوق المزارعين الأسبوعي',
+    place: 'الوادي الجديد',
+    date: 'كل سبت',
+    image: images.event1,
+    desc: 'منتجات طازجة من مزارع المنطقة — مباشرة من المنتج للمشتري.',
+  },
+  {
+    id: 'e2',
+    title: 'يوم التوعية البيطرية',
+    place: 'العيادات الشريكة',
+    date: 'قريبًا',
+    image: images.event2,
+    desc: 'فحص واستشارات للمربين — حجز مسبق عبر قريب.',
+  },
+  {
+    id: 'e3',
+    title: 'ملتقى الشركاء المحليين',
+    place: 'أونلاين + حضوري',
+    date: 'شهري',
+    image: images.event3,
+    desc: 'تعرف على شركاء جدد وفرص تعاون في مجتمعك.',
+  },
+];
+
+export const steps = [
+  { n: '1', title: 'سجّل مرة واحدة', desc: 'حساب واحد يفتح لك كل الخدمات.' },
+  { n: '2', title: 'اختار احتياجك', desc: 'حجز، طلب، صيانة، بيع، أو فعالية.' },
+  { n: '3', title: 'كمّل بثقة', desc: 'شركاء موثّقين وتقييمات واضحة.' },
+  { n: '4', title: 'قيّم وارجع', desc: 'تجربة تتحسن مع كل استخدام.' },
+];
+
 export const trustPillars = [
-  { iconName: 'ShieldCheck', title: 'حلول مخصصة وعالية الدقة', desc: 'نصمم الحلول وفقاً لاحتياجات مزرعتك وعملك الميداني.' },
-  { iconName: 'Users', title: 'فريق متخصص وذو خبرة', desc: 'خبرة عميقة تجمع بين المجال الزراعي والتطوير التقني.' },
-  { iconName: 'TrendingUp', title: 'زيادة الإنتاجية وتقليل التكاليف', desc: 'تقنيات حديثة لرفع كفاءة استهلاك الموارد والمياه.' },
-  { iconName: 'Lock', title: 'أمان بيانات أعلى معايير', desc: 'حماية بياناتك وحساباتك وفق أحدث البروتوكولات الأمنية.' },
-  { iconName: 'WifiOff', title: 'عمل بدون إنترنت (Offline Sync)', desc: 'تطبيق يعمل في المناطق النائية وتزامن البيانات عند توفر الاتصال.' }
+  { title: 'قريب منك', desc: 'خدمات وناس في نفس المحافظة والمدينة والقرية.' },
+  { title: 'حساب واحد', desc: 'مش كل خدمة تطبيق جديد — منصة واحدة متسقة.' },
+  { title: 'توثيق تدريجي', desc: 'مستويات ثقة واضحة للشركاء حسب النشاط.' },
+  { title: 'عربي أولًا', desc: 'واجهة عربية كاملة مع دعم الإنجليزية.' },
+];
+
+export const achievements = [
+  { value: '6', label: 'مسارات خدمة أساسية', desc: 'من الحجز للسوق للفعاليات' },
+  { value: '1', label: 'حساب موحّد', desc: 'لطالب الخدمة والشريك' },
+  { value: '100%', label: 'تركيز محلي', desc: 'مصر — من القرية للمدينة' },
+  { value: '24/7', label: 'منصة جاهزة', desc: 'توسع تدريجي حسب المنطقة' },
 ];
 
 export const contactInfo = {
   phone: '01067156319',
   whatsapp: '201067156319',
   email: 'mn877007@gmail.com',
-  location: 'مصر والمنطقة العربية',
-  website: 'www.qareeb.com'
+  location: 'مصر — نبدأ من الوادي الجديد ونتوسع',
 };

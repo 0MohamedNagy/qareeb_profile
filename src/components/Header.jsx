@@ -1,19 +1,15 @@
 import React from 'react';
-import { Search } from 'lucide-react';
 import { navItems } from '../data/contentData';
 
 export function Header({ scrolled, menuOpen, setMenuOpen, closeMenu }) {
   return (
     <>
-      {/* Mobile Menu Overlay */}
       <div
         className={`mobile-menu-overlay ${menuOpen ? 'active' : ''}`}
         onClick={closeMenu}
         aria-hidden="true"
       />
-
-      {/* Mobile Nav */}
-      <nav className={`mobile-nav ${menuOpen ? 'active' : ''}`} aria-label="القائمة الرئيسية">
+      <nav className={`mobile-nav ${menuOpen ? 'active' : ''}`} aria-label="القائمة">
         <ul>
           {navItems.map(({ href, label }) => (
             <li key={href}>
@@ -23,37 +19,23 @@ export function Header({ scrolled, menuOpen, setMenuOpen, closeMenu }) {
         </ul>
       </nav>
 
-      {/* Header */}
-      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-        <div className="container">
-          <a href="#home" className="logo" aria-label="قريب Qareeb">
-            <span className="logo-icon-badge">
-              <Search size={22} strokeWidth={2.5} />
-            </span>
-            <span className="logo-text">
-              قريب <span>Qareeb</span>
-            </span>
+      <header className={`header header-v2 ${scrolled ? 'scrolled' : ''}`}>
+        <div className="container header-v2-inner">
+          <a href="#home" className="logo-v2">
+            قريب <span>Qareeb</span>
           </a>
-
-          <nav aria-label="التنقل الرئيسي">
-            <ul className="nav-links">
-              {navItems.map(({ href, label }) => (
-                <li key={href}>
-                  <a href={href}>{label}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
+          <ul className="nav-links">
+            {navItems.map(({ href, label }) => (
+              <li key={href}><a href={href}>{label}</a></li>
+            ))}
+          </ul>
+          <a href="#contact" className="btn btn-primary btn-sm header-cta">تواصل</a>
           <button
             className={`menu-toggle ${menuOpen ? 'active' : ''}`}
             onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
-            aria-expanded={menuOpen}
+            aria-label="القائمة"
           >
-            <span />
-            <span />
-            <span />
+            <span /><span /><span />
           </button>
         </div>
       </header>

@@ -3,20 +3,18 @@ import { achievements } from '../data/contentData';
 
 export function AchievementsSection() {
   return (
-    <section id="achievements" className="stats cinematic-stats">
+    <section id="achievements" className="section section-muted">
       <div className="container">
-        <h2 className="section-title" style={{ color: '#fff' }}>
-          أرقام تتكلم
-        </h2>
-        <p className="section-subtitle">أثر قريب على الأرض — إنتاجية، قطعان، ومزارع</p>
-        <div className="stats-grid stagger-children">
+        <div className="section-head">
+          <span className="eyebrow">باختصار</span>
+          <h2>أرقام توضّح الاتجاه</h2>
+        </div>
+        <div className="stats-row">
           {achievements.map((a) => (
-            <div className="stat-item" key={a.label}>
-              <span className="stat-number" data-count={a.value}>
-                {a.value}
-              </span>
-              <span className="stat-label">{a.label}</span>
-              {a.desc ? <span className="stat-desc">{a.desc}</span> : null}
+            <div className="stat-box" key={a.label}>
+              <strong data-count={a.value}>{a.value}</strong>
+              <span className="stat-box-label">{a.label}</span>
+              <span className="stat-box-desc">{a.desc}</span>
             </div>
           ))}
         </div>

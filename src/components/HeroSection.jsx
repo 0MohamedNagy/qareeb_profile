@@ -1,122 +1,41 @@
 import React from 'react';
-import { ArrowLeft, Search, Sprout, PawPrint, Droplets, Smartphone, CheckCircle } from 'lucide-react';
+import { ArrowLeft, MapPin, ShieldCheck, Smartphone } from 'lucide-react';
+import { images } from '../data/contentData';
 
 export function HeroSection() {
   return (
-    <section id="home" className="hero cinematic-hero">
-      <div className="hero-shape hero-shape-1" aria-hidden="true" />
-      <div className="hero-shape hero-shape-2" aria-hidden="true" />
-      <div className="hero-shape hero-shape-3" aria-hidden="true" />
-      <div className="hero-dots" aria-hidden="true" />
+    <section id="home" className="hero-v2">
+      <div className="hero-v2-bg" style={{ backgroundImage: `url(${images.hero})` }} />
+      <div className="hero-v2-overlay" />
 
-      <div className="container hero-container">
-        <div className="hero-content">
-          <div className="hero-top-tag">
-            <span className="tag-pulse">🌱 التقنية... من أجل الزراعة والحياة</span>
-          </div>
-          <h1 className="hero-title-cinematic">
-            <span className="line">حلول تقنية ذكية</span>
-            <span className="line accent">للزراعة والثروة الحيوانية</span>
-            <span className="line">والمنصات المحلية</span>
+      <div className="container hero-v2-inner">
+        <div className="hero-v2-content">
+          <span className="hero-v2-badge">منصة محلية مصرية</span>
+          <h1>
+            كل احتياج محلي…
+            <br />
+            <span>في مكان واحد قريب منك</span>
           </h1>
-          <p className="hero-lead">
-            قريب نطور أنظمة وتطبيقات متكاملة تربط الأرض والقطعان والتكنولوجيا بالذكاء الاصطناعي — لرفع الإنتاجية، خفض التكاليف، وتقديم تجربة خدمات محلية موحدة وموثوقة.
+          <p>
+            قريب بتجمع الحجز، الطلبات، الصيانة، البيع والشراء، والفعاليات في تجربة واحدة موثوقة — بدل ما تتنقل بين تطبيقات متفرقة.
           </p>
 
-          <div className="hero-quick-features">
-            <div className="hero-qf-item">
-              <CheckCircle size={18} color="var(--color-primary)" />
-              <span>ذكاء اصطناعي وحساسات IoT</span>
-            </div>
-            <div className="hero-qf-item">
-              <CheckCircle size={18} color="var(--color-primary)" />
-              <span>إدارة المزارع والقطعان</span>
-            </div>
-            <div className="hero-qf-item">
-              <CheckCircle size={18} color="var(--color-primary)" />
-              <span>تطبيقات تعمل بدون إنترنت</span>
-            </div>
-          </div>
-
-          <div className="hero-actions">
-            <a href="#about" className="btn btn-primary btn-magnetic">
-              ابدأ القصة
-              <ArrowLeft size={20} />
+          <div className="hero-v2-actions">
+            <a href="#services" className="btn btn-primary btn-lg">
+              استكشف الخدمات
+              <ArrowLeft size={18} />
             </a>
-            <a href="#contact" className="btn btn-secondary btn-magnetic">
-              تواصل مع الشركاء
+            <a href="#events" className="btn btn-ghost btn-lg">
+              شوف الفعاليات
             </a>
           </div>
-        </div>
 
-        <div className="hero-showcase-card float-card">
-          <div className="showcase-header-bar">
-            <div className="showcase-status-badge">
-              <span className="dot-live" />
-              منظومة قريب الذكية
-            </div>
-            <span className="showcase-app-ver">App v2.4</span>
-          </div>
-
-          <div className="showcase-search-bar">
-            <Search size={18} className="search-icon" />
-            <span>ابحث عن حالة المزرعة، العيادات، أو التنبيهات...</span>
-          </div>
-
-          <div className="showcase-grid">
-            <div className="showcase-item">
-              <div className="showcase-item-icon" style={{ background: 'rgba(24, 152, 81, 0.2)' }}>
-                <Sprout size={22} color="#4ade80" />
-              </div>
-              <div>
-                <div className="showcase-item-title">مراقبة المحاصيل</div>
-                <div className="showcase-item-sub">صحة النبات 92% ✅</div>
-              </div>
-            </div>
-            <div className="showcase-item">
-              <div className="showcase-item-icon" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
-                <PawPrint size={22} color="#60a5fa" />
-              </div>
-              <div>
-                <div className="showcase-item-title">الثروة الحيوانية</div>
-                <div className="showcase-item-sub">78 رأس ماشية 🐄</div>
-              </div>
-            </div>
-            <div className="showcase-item">
-              <div className="showcase-item-icon" style={{ background: 'rgba(245, 158, 11, 0.2)' }}>
-                <Droplets size={22} color="#fbbf24" />
-              </div>
-              <div>
-                <div className="showcase-item-title">ري ذكي واستشعار</div>
-                <div className="showcase-item-sub">توفير 30% مياه 💧</div>
-              </div>
-            </div>
-            <div className="showcase-item">
-              <div className="showcase-item-icon" style={{ background: 'rgba(139, 92, 246, 0.2)' }}>
-                <Smartphone size={22} color="#c084fc" />
-              </div>
-              <div>
-                <div className="showcase-item-title">منصة خدمات محلية</div>
-                <div className="showcase-item-sub">حساب واحد موحد 🛡️</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="showcase-footer-pill">
-            <span>🛡️ هوية وثقة واحدة موحدة (تزامن offline)</span>
-            <span className="badge-active">متصل</span>
-          </div>
-
-          <div className="hero-badge">
-            <div className="hero-badge-dot" />
-            نزرع اليوم... لنحصد غداً
+          <div className="hero-v2-pills">
+            <span><MapPin size={16} /> محلي أولًا</span>
+            <span><ShieldCheck size={16} /> شركاء موثّقين</span>
+            <span><Smartphone size={16} /> حساب واحد</span>
           </div>
         </div>
-      </div>
-
-      <div className="hero-scroll-hint" aria-hidden="true">
-        <span>اسحب لتكمل القصة</span>
-        <div className="scroll-hint-line" />
       </div>
     </section>
   );
