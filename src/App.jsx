@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { HybridSite } from './components/HybridSite'
-import { createCinematicEngine } from './lib/cinematicEngine'
+import { FieldSite } from './components/FieldSite'
+import { createFieldEngine } from './lib/fieldEngine'
 import { useReducedMotion } from './hooks/useCinematicScroll'
 import './styles/tokens.css'
-import './styles/hybrid.css'
+import './styles/field.css'
 
 export default function App() {
   const reducedMotion = useReducedMotion()
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     let engine = null
     const t = window.setTimeout(() => {
-      engine = createCinematicEngine({ reducedMotion })
-    }, 80)
+      engine = createFieldEngine({ reducedMotion })
+    }, 60)
     return () => {
       window.clearTimeout(t)
       engine?.destroy()
@@ -22,20 +21,8 @@ export default function App() {
   }, [reducedMotion])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    document.body.style.overflow = open ? 'hidden' : ''
+  }, [open])
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-  }, [menuOpen])
-
-  return (
-    <HybridSite
-      menuOpen={menuOpen}
-      setMenuOpen={setMenuOpen}
-      scrolled={scrolled}
-    />
-  )
+  return <FieldSite menuOpen={open} setMenuOpen={setOpen} />
 }
