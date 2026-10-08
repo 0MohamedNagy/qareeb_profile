@@ -10,7 +10,7 @@ export function createCinematicEngine({ reducedMotion = false } = {}) {
 
   if (!reducedMotion) {
     lenis = new Lenis({
-      duration: 1.1,
+      duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
@@ -30,16 +30,53 @@ export function createCinematicEngine({ reducedMotion = false } = {}) {
       cleanups.push(() => st.kill())
     }
 
-    // Subtle entrance for sections
-    gsap.utils.toArray('.mk-card, .mk-step, .mk-feature').forEach((el) => {
+    // Parallax on cinematic beats
+    document.querySelectorAll('.hy-beat').forEach((beat) => {
+      const bg = beat.querySelector('.hy-beat-bg')
+      const copy = beat.querySelector('.hy-beat-copy')
+      if (bg) {
+        gsap.fromTo(
+          bg,
+          { scale: 1.12, y: 30 },
+          {
+            scale: 1,
+            y: -20,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: beat,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          }
+        )
+      }
+      if (copy) {
+        gsap.from(copy.children, {
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: beat,
+            start: 'top 65%',
+            toggleActions: 'play none none none',
+          },
+        })
+      }
+    })
+
+    // Cards / steps / features
+    gsap.utils.toArray('.hy-step, .hy-feat, .hy-card').forEach((el) => {
       gsap.from(el, {
-        y: 28,
+        y: 24,
         opacity: 0,
-        duration: 0.55,
+        duration: 0.5,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: el,
-          start: 'top 88%',
+          start: 'top 90%',
           toggleActions: 'play none none none',
         },
       })

@@ -1,16 +1,8 @@
-/**
- * Product Brief (discovery + strategy)
- * Problem: startups struggle to adopt digital agriculture systems (complex, costly, enterprise-first)
- * JTBD: When building/scaling an agri business, I want simple digital systems, so I can operate smarter without a huge tech team
- * Segment: early-stage agri startups & digital-agri projects in Egypt / region
- * Solution: Qareeb — clearer systems + simpler digital transformation path
- */
-
 export const nav = [
-  { href: '#problem', label: 'التحدي' },
+  { href: '#story', label: 'القصة' },
   { href: '#solution', label: 'الحل' },
-  { href: '#features', label: 'الأنظمة' },
-  { href: '#for-whom', label: 'لمن' },
+  { href: '#systems', label: 'الأنظمة' },
+  { href: '#who', label: 'لمن' },
   { href: '#contact', label: 'تواصل' },
 ]
 
@@ -20,53 +12,53 @@ export const hero = {
   subtitle:
     'قريب بتقدّم حلول وأنظمة تساعد الشركات الناشئة على الانتقال للزراعة الرقمية — أبسط، أوضح، وعلى مقاس مرحلة النمو.',
   primaryCta: { label: 'احجز مكالمة تعريفية', href: '#contact' },
-  secondaryCta: { label: 'شوف كيف يشتغل', href: '#solution' },
+  secondaryCta: { label: 'اقرأ القصة', href: '#story' },
 }
 
-export const problem = {
-  eyebrow: 'التحدي',
-  title: 'التقنية الزراعية موجودة — الدخول فيها صعب على الناشئ',
-  points: [
-    {
-      title: 'أنظمة معقّدة',
-      desc: 'حلول المؤسسات الكبيرة مش مناسبة لفريق صغير وميزانية محدودة.',
-    },
-    {
-      title: 'تكلفة عالية مبكرًا',
-      desc: 'الاستثمار في التحول الرقمي بيبان غالي قبل ما تشوف نتيجة واضحة.',
-    },
-    {
-      title: 'مسار مش واضح',
-      desc: 'منين تبدأ؟ إيه النظام الأول؟ إزاي تربط العمليات بالبيانات؟',
-    },
-  ],
-}
+export const storyBeats = [
+  {
+    id: 'challenge',
+    kicker: 'التحدي',
+    title: 'التقنية الزراعية موجودة.\nالدخول فيها صعب على الناشئ.',
+    body: 'حلول المؤسسات معقّدة ومكلفة. الشركات الناشئة محتاجة مسار أوضح — مش نظام ضخم من اليوم الأول.',
+    image:
+      'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1800&q=85',
+  },
+  {
+    id: 'shift',
+    kicker: 'التحول',
+    title: 'من التقليدي…\nإلى الرقمي.',
+    body: 'بيانات أوضح، متابعة يومية، وقرارات أسرع — بدون ما تحتاج فريق تقني كبير.',
+    image:
+      'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=1800&q=85',
+  },
+]
 
 export const solution = {
   eyebrow: 'الحل',
   title: 'قريب = مسار أوضح للزراعة الرقمية',
-  body: 'مش بنبيع أجهزة ولا خضار. بنبسّط الرحلة: أنظمة عملية + خطوات واضحة + دعم يناسب الشركات الناشئة.',
+  body: 'مش بنبيع أجهزة ولا منتجات زراعية. بنبسّط الرحلة: أنظمة عملية + خطوات واضحة + دعم يناسب الشركات الناشئة.',
   steps: [
     { n: '01', title: 'نفهم وضعك', desc: 'عملياتك، مرحلتك، وأولوية التحول.' },
-    { n: '02', title: 'نركّب النظام المناسب', desc: 'أدوات وأنظمة على قد احتياجك الحالي.' },
-    { n: '03', title: 'تشتغل وتوسّع', desc: 'بيانات أوضح، قرارات أسرع، نمو مرتب.' },
+    { n: '02', title: 'نركّب النظام المناسب', desc: 'أدوات على قد احتياجك الحالي.' },
+    { n: '03', title: 'تشتغل وتوسّع', desc: 'بيانات أوضح ونمو مرتب.' },
   ],
 }
 
 export const features = [
   {
     title: 'أنظمة تشغيل',
-    desc: 'إدارة العمليات والمتابعة اليومية بشكل رقمي مرتب من أول يوم.',
+    desc: 'إدارة العمليات والمتابعة اليومية بشكل رقمي مرتب.',
     icon: 'systems',
   },
   {
     title: 'مسار تحول رقمي',
-    desc: 'خطوات واضحة من الوضع التقليدي إلى التشغيل بالبيانات.',
+    desc: 'خطوات واضحة من التقليدي إلى التشغيل بالبيانات.',
     icon: 'path',
   },
   {
     title: 'على مقاس الناشئ',
-    desc: 'تعقيد أقل، تكلفة أوضح، وبدون ما تحتاج فريق تقني ضخم.',
+    desc: 'تعقيد أقل وتكلفة أوضح — بدون فريق تقني ضخم.',
     icon: 'startup',
   },
   {
@@ -82,15 +74,15 @@ export const forWhom = {
   segments: [
     {
       title: 'شركات ناشئة زراعية',
-      desc: 'عايزة أنظمة من غير ما تغرق في تعقيد المؤسسات.',
+      desc: 'عايزة أنظمة من غير تعقيد المؤسسات الكبيرة.',
     },
     {
       title: 'مشاريع تحول رقمي',
-      desc: 'من التقليدي للرقمي وتحتاج مسار عملي وواضح.',
+      desc: 'من التقليدي للرقمي وتحتاج مسار عملي.',
     },
     {
       title: 'فرق صغيرة',
-      desc: 'كام شخص، أهداف كبيرة، ومحتاجين أدوات تشتغل بسرعة.',
+      desc: 'أهداف كبيرة ومحتاجين أدوات تشتغل بسرعة.',
     },
   ],
 }

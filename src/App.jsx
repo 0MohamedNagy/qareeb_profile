@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { MarketingSite } from './components/MarketingSite'
+import { HybridSite } from './components/HybridSite'
 import { createCinematicEngine } from './lib/cinematicEngine'
 import { useReducedMotion } from './hooks/useCinematicScroll'
 import './styles/tokens.css'
-import './styles/marketing.css'
+import './styles/hybrid.css'
 
 export default function App() {
   const reducedMotion = useReducedMotion()
@@ -22,7 +22,7 @@ export default function App() {
   }, [reducedMotion])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 24)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -32,7 +32,7 @@ export default function App() {
   }, [menuOpen])
 
   return (
-    <MarketingSite
+    <HybridSite
       menuOpen={menuOpen}
       setMenuOpen={setMenuOpen}
       scrolled={scrolled}
