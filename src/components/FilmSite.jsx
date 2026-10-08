@@ -7,8 +7,8 @@ export function FilmSite({ menuOpen, setMenuOpen }) {
       <header className="film-nav">
         <a href="#scene-0" className="film-logo">قريب</a>
         <nav className="film-nav-links">
-          <a href="#scene-2">القصة</a>
-          <a href="#scene-4">الخدمات</a>
+          <a href="#scene-1">التحدي</a>
+          <a href="#scene-2">الحل</a>
           <a href="#scene-7">تواصل</a>
         </nav>
         <button
@@ -23,8 +23,8 @@ export function FilmSite({ menuOpen, setMenuOpen }) {
 
       {menuOpen && (
         <div className="film-mobile-menu">
-          <a href="#scene-2" onClick={() => setMenuOpen(false)}>القصة</a>
-          <a href="#scene-4" onClick={() => setMenuOpen(false)}>الخدمات</a>
+          <a href="#scene-1" onClick={() => setMenuOpen(false)}>التحدي</a>
+          <a href="#scene-2" onClick={() => setMenuOpen(false)}>الحل</a>
           <a href="#scene-7" onClick={() => setMenuOpen(false)}>تواصل</a>
         </div>
       )}
@@ -61,7 +61,7 @@ export function FilmSite({ menuOpen, setMenuOpen }) {
 
       <footer className="film-footer">
         <span>قريب Qareeb</span>
-        <span>منصة محلية مصرية</span>
+        <span>حلول الزراعة الرقمية للشركات الناشئة</span>
       </footer>
     </>
   )
