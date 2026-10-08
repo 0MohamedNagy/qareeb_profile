@@ -1,16 +1,17 @@
 import React from 'react';
-import { ArrowLeft, Search, Sprout, PawPrint, Droplets, Smartphone, ShieldCheck, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Search, Sprout, PawPrint, Droplets, Smartphone, CheckCircle } from 'lucide-react';
 
 export function HeroSection() {
   return (
-    <section id="home" className="hero">
-      <div className="hero-shape hero-shape-1" aria-hidden="true" />
-      <div className="hero-shape hero-shape-2" aria-hidden="true" />
-      <div className="hero-shape hero-shape-3" aria-hidden="true" />
-      <div className="hero-dots" aria-hidden="true" />
+    <section id="home" className="hero cinematic-hero">
+      {/* Parallax layers — move at different speeds like a video shot */}
+      <div className="parallax-layer parallax-slow hero-shape hero-shape-1" aria-hidden="true" />
+      <div className="parallax-layer parallax-mid hero-shape hero-shape-2" aria-hidden="true" />
+      <div className="parallax-layer parallax-fast hero-shape hero-shape-3" aria-hidden="true" />
+      <div className="parallax-layer parallax-slow hero-dots" aria-hidden="true" />
 
       <div className="container hero-container">
-        <div className="hero-content">
+        <div className="hero-content reveal">
           <div className="hero-top-tag">
             <span>🌱 التقنية... من أجل الزراعة والحياة</span>
           </div>
@@ -38,7 +39,7 @@ export function HeroSection() {
 
           <div className="hero-actions">
             <a href="#agri-tech" className="btn btn-primary">
-              استكشف حلول المنظومة
+              ابدأ القصة
               <ArrowLeft size={20} />
             </a>
             <a href="#contact" className="btn btn-secondary">
@@ -47,8 +48,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Hero Interactive App Mockup Showcase */}
-        <div className="hero-showcase-card">
+        <div className="hero-showcase-card parallax-layer parallax-mid reveal-scale">
           <div className="showcase-header-bar">
             <div className="showcase-status-badge">
               <span className="dot-live" />
@@ -105,7 +105,7 @@ export function HeroSection() {
           </div>
 
           <div className="showcase-footer-pill">
-            <span>🛡️ هوية وثقة واحدة موحدة (تزامن Offline)</span>
+            <span>🛡️ هوية وثقة واحدة موحدة (تزامن offline)</span>
             <span className="badge-active">متصل</span>
           </div>
 
@@ -114,6 +114,11 @@ export function HeroSection() {
             نزرع اليوم... لنحصد غداً
           </div>
         </div>
+      </div>
+
+      <div className="hero-scroll-hint" aria-hidden="true">
+        <span>اسحب لتكمل القصة</span>
+        <div className="scroll-hint-line" />
       </div>
     </section>
   );

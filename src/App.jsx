@@ -11,6 +11,8 @@ import { TrustSection } from './components/TrustSection';
 import { VisionSection } from './components/VisionSection';
 import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
+import { StoryProgress } from './components/StoryProgress';
+import { useCinematicScroll } from './hooks/useCinematicScroll';
 import './index.css';
 
 /* ── Scroll Reveal Hook ── */
@@ -30,9 +32,7 @@ function useScrollReveal() {
     );
 
     const watch = (root) => {
-      const list = root instanceof Element && root.matches?.(selector)
-        ? [root]
-        : [];
+      const list = root instanceof Element && root.matches?.(selector) ? [root] : [];
       const nested = root.querySelectorAll ? root.querySelectorAll(selector) : [];
       [...list, ...nested].forEach((el) => {
         if (!el.classList.contains('visible')) observer.observe(el);
@@ -60,10 +60,10 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const { progress } = useCinematicScroll();
 
   useScrollReveal();
 
-  /* Sticky header + scroll-to-top visibility */
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
@@ -73,7 +73,6 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* Lock body scroll when mobile menu open */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   }, [menuOpen]);
@@ -84,8 +83,9 @@ export default function App() {
   };
 
   return (
-    <div className="app-root">
-      {/* Scroll to Top Button */}
+    <div className="app-root cinematic-root">
+      <StoryProgress progress={progress} />
+
       <button
         className={`scroll-top ${showScrollTop ? 'visible' : ''}`}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -94,7 +94,6 @@ export default function App() {
         <ArrowLeft size={20} style={{ transform: 'rotate(90deg)' }} />
       </button>
 
-      {/* Header / Navbar */}
       <Header
         scrolled={scrolled}
         menuOpen={menuOpen}
@@ -102,20 +101,37 @@ export default function App() {
         closeMenu={closeMenu}
       />
 
-      {/* Main Content Sections */}
-      <main>
-        <HeroSection />
-        <AgriTechSection />
-        <TechServicesSection />
-        <ProblemSection />
-        <WorkflowsSection />
-        <AchievementsSection />
-        <TrustSection />
-        <VisionSection />
-        <CTASection />
+      <main className="story-reel">
+        {/* Chapter 1 — Opening shot */}
+        <div className="story-chapter-block" data-chapter="1">
+          <HeroSection />
+        </div>
+
+        {/* Chapter 2 — World / products */}
+        <div className="story-chapter-block" data-chapter="2">
+          <AgriTechSection />
+          <TechServicesSection />
+        </div>
+
+        {/* Chapter 3 — Conflict */}
+        <div className="story-chapter-block" data-chapter="3" id="problem-wrap">
+          <ProblemSection />
+        </div>
+
+        {/* Chapter 4 — Resolution */}
+        <div className="story-chapter-block" data-chapter="4">
+          <WorkflowsSection />
+          <AchievementsSection />
+          <TrustSection />
+        </div>
+
+        {/* Chapter 5 — Closing */}
+        <div className="story-chapter-block" data-chapter="5">
+          <VisionSection />
+          <CTASection />
+        </div>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
