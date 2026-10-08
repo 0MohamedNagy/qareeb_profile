@@ -2,7 +2,7 @@ import React from 'react';
 
 const CHAPTERS = [
   { id: 'home', label: 'البداية' },
-  { id: 'problem', label: 'المشكلة' },
+  { id: 'about', label: 'المشكلة' },
   { id: 'workflows', label: 'الحل' },
   { id: 'trust', label: 'الثقة' },
   { id: 'contact', label: 'الخطوة' },
@@ -19,7 +19,7 @@ export function StoryProgress({ progress }) {
       </div>
       <div className="story-chapters">
         {CHAPTERS.map((ch, i) => {
-          const active = progress >= i / (CHAPTERS.length - 1) - 0.05;
+          const active = progress >= i / Math.max(1, CHAPTERS.length - 1) - 0.05;
           return (
             <a
               key={ch.id}
