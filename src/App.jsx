@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { FieldSite } from './components/FieldSite'
-import { createFieldEngine } from './lib/fieldEngine'
+import { PortfolioSite } from './components/PortfolioSite'
+import { createScrollEngine } from './lib/scrollEngine'
 import { useReducedMotion } from './hooks/useCinematicScroll'
-import './styles/tokens.css'
-import './styles/field.css'
+import './styles/portfolio.css'
 
 export default function App() {
   const reducedMotion = useReducedMotion()
-  const [open, setOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     let engine = null
     const t = window.setTimeout(() => {
-      engine = createFieldEngine({ reducedMotion })
-    }, 60)
+      engine = createScrollEngine({ reducedMotion })
+    }, 50)
     return () => {
       window.clearTimeout(t)
       engine?.destroy()
@@ -21,8 +20,8 @@ export default function App() {
   }, [reducedMotion])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-  }, [open])
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+  }, [menuOpen])
 
-  return <FieldSite menuOpen={open} setMenuOpen={setOpen} />
+  return <PortfolioSite menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 }
